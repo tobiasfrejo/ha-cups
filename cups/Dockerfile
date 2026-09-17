@@ -81,7 +81,14 @@ RUN \
     apk del .dymo-build
 
 # Download Brother HL-L2310D driver
-RUN curl -L https://download.brother.com/welcome/dlf103532/hll2310dpdrv-4.0.0-1.i386.deb -o /share/hll2310dpdrv-4.0.0-1.i386.deb
+RUN \
+    curl -vL https://download.brother.com/welcome/dlf103532/hll2310dpdrv-4.0.0-1.i386.deb -o /tmp/hll2310dpdrv-4.0.0-1.i386.deb && \
+    mkdir /tmp/hll2310d && \
+    dpkg -x /tmp/hll2310dpdrv-4.0.0-1.i386.deb /tmp/hll2310d && \
+    mkdir -p /etc/opt/brother/Printers/HLL2310D && \
+    mkdir -p /var/spool/lpd/HLL2310D && \
+    cp -a /tmp/hll2310d/opt/brother /opt/brother && \
+    ls -al /opt/brother
 
 # Copy data
 COPY rootfs /
