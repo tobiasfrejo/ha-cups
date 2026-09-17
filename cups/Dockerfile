@@ -33,7 +33,8 @@ RUN \
         gcompat \
         libstdc++ \
         dpkg \
-        jq
+        jq \
+        curl
 
 # Build the open-source rastertokpsl filter for Kyocera GDI (KPSL) printers
 # (FS-1040/1041, FS-1060DN/1061DN, FS-1020/1025/1120/1125MFP). Their PPDs
@@ -78,6 +79,9 @@ RUN \
     cd / && \
     rm -rf /tmp/dymo-cups-drivers && \
     apk del .dymo-build
+
+# Download Brother HL-L2310D driver
+RUN curl -L https://download.brother.com/welcome/dlf103532/hll2310dpdrv-4.0.0-1.i386.deb -o /share/hll2310dpdrv-4.0.0-1.i386.deb
 
 # Copy data
 COPY rootfs /
