@@ -87,8 +87,7 @@ RUN \
     dpkg -x /tmp/hll2310dpdrv-4.0.0-1.i386.deb /tmp/hll2310d && \
     mkdir -p /etc/opt/brother/Printers/HLL2310D && \
     mkdir -p /var/spool/lpd/HLL2310D && \
-    cp -a /tmp/hll2310d/opt/brother /opt/brother && \
-    ls -al /opt/brother
+    cp -a /tmp/hll2310d/opt/brother /opt/brother
 
 # Copy data
 COPY rootfs /
